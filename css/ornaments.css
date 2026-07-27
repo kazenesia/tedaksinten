@@ -1,0 +1,139 @@
+/* ============================================================
+   ornaments.css — nuansa Jawa: batik, wayang, sulur, gunungan
+   ============================================================ */
+
+/* ------------------------------------------------------------
+   1. LAPISAN BATIK AMBIENT
+   Motif kawung + parang halus yang menyelimuti seluruh halaman.
+   Sangat tipis agar teks tetap nyaman dibaca.
+   ------------------------------------------------------------ */
+.batik-layer{
+  position:fixed; inset:0; z-index:0; pointer-events:none;
+  opacity:.5;
+  background-repeat:repeat;
+  background-size:180px 180px, 120px 120px;
+  background-image:
+    /* kawung — empat kelopak dalam lingkaran */
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180' viewBox='0 0 180 180'%3E%3Cg fill='none' stroke='%2335271b' stroke-opacity='0.16' stroke-width='1.1'%3E%3Cellipse cx='45' cy='45' rx='19' ry='30'/%3E%3Cellipse cx='45' cy='45' rx='30' ry='19'/%3E%3Cellipse cx='135' cy='45' rx='19' ry='30'/%3E%3Cellipse cx='135' cy='45' rx='30' ry='19'/%3E%3Cellipse cx='45' cy='135' rx='19' ry='30'/%3E%3Cellipse cx='45' cy='135' rx='30' ry='19'/%3E%3Cellipse cx='135' cy='135' rx='19' ry='30'/%3E%3Cellipse cx='135' cy='135' rx='30' ry='19'/%3E%3Ccircle cx='45' cy='45' r='4'/%3E%3Ccircle cx='135' cy='45' r='4'/%3E%3Ccircle cx='45' cy='135' r='4'/%3E%3Ccircle cx='135' cy='135' r='4'/%3E%3Ccircle cx='90' cy='90' r='3'/%3E%3Ccircle cx='0' cy='90' r='3'/%3E%3Ccircle cx='180' cy='90' r='3'/%3E%3Ccircle cx='90' cy='0' r='3'/%3E%3Ccircle cx='90' cy='180' r='3'/%3E%3C/g%3E%3C/svg%3E"),
+    /* parang — garis diagonal berulang */
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cg fill='none' stroke='%23b8863b' stroke-opacity='0.10' stroke-width='7' stroke-linecap='round'%3E%3Cpath d='M-20 40L40 -20M10 70L70 10M40 100L100 40M70 130L130 70'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+/* ------------------------------------------------------------
+   2. SILUET WAYANG LATAR
+   ------------------------------------------------------------ */
+.wayang-bg{
+  position:absolute; z-index:0; pointer-events:none;
+  height:auto;
+  fill:var(--wayang-ink); color:var(--wayang-ink);
+  will-change:transform;
+}
+/* Sepasang gunungan mengapit isi — pengganti siluet wayang.
+   Menggunakan gambar gunungan yang sama, dipotong separuh oleh tepi layar. */
+.gunungan-side{
+  position:absolute; z-index:0; pointer-events:none;
+  width:min(42vw, 260px);
+  aspect-ratio:640/977;
+  bottom:-6%;
+  background-color:rgba(53,39,27,.055);
+  -webkit-mask:url("../assets/img/gunungan-mask.webp") center/contain no-repeat;
+          mask:url("../assets/img/gunungan-mask.webp") center/contain no-repeat;
+}
+.gunungan-side--l{ left:-16%; }
+.gunungan-side--r{ right:-16%; transform:scaleX(-1); }
+
+/* Gunungan (kayon) asli — dipakai sebagai mask agar warnanya
+   bisa disesuaikan palet & ukuran berkas jauh lebih kecil. */
+.gunungan-ghost{
+  position:absolute; left:50%; top:50%;
+  transform:translate(-50%,-50%);
+  width:min(74vw, 430px);
+  aspect-ratio:640/977;
+  z-index:0; pointer-events:none;
+  background-color:rgba(184,134,59,.16);
+  -webkit-mask:url("../assets/img/gunungan-mask.webp") center/contain no-repeat;
+          mask:url("../assets/img/gunungan-mask.webp") center/contain no-repeat;
+}
+
+/* Gunungan tegas (penutup) — tampil lebih jelas sebagai penutup halaman */
+.gunungan-solid{
+  width:min(46vw, 170px);
+  aspect-ratio:640/977;
+  margin:0 auto var(--sp-3);
+  background-color:var(--gold);
+  opacity:.85;
+  -webkit-mask:url("../assets/img/gunungan-mask.webp") center/contain no-repeat;
+          mask:url("../assets/img/gunungan-mask.webp") center/contain no-repeat;
+}
+
+/* ------------------------------------------------------------
+   2b. LAPISAN AWAN (mega mendung) — latar kedua
+   ------------------------------------------------------------ */
+.awan{
+  position:absolute; z-index:0; pointer-events:none;
+  width:min(88vw, 620px);
+  aspect-ratio:1100/511;
+  background-color:rgba(184,134,59,.20);
+  -webkit-mask:url("../assets/img/awan-mask.webp") center/contain no-repeat;
+          mask:url("../assets/img/awan-mask.webp") center/contain no-repeat;
+}
+.awan--tl{ top:2%;  left:-16%; }
+.awan--tr{ top:6%;  right:-18%; transform:scaleX(-1); }
+.awan--bl{ bottom:3%; left:-20%; transform:scaleX(-1) scaleY(1); }
+.awan--br{ bottom:4%; right:-16%; }
+.awan--soft{ background-color:rgba(184,134,59,.13); }
+
+/* ------------------------------------------------------------
+   3. PEMBATAS SULUR — pengganti garis batik polos
+   ------------------------------------------------------------ */
+.divider{
+  display:flex; align-items:center; justify-content:center; gap:14px;
+  padding:8px 24px; position:relative; z-index:2;
+  color:var(--gold);
+}
+.divider__line{
+  flex:1; max-width:110px; height:1px;
+  background:linear-gradient(90deg, transparent, var(--gold));
+  opacity:.6;
+}
+.divider__line--r{ background:linear-gradient(90deg, var(--gold), transparent); }
+.divider__motif{ width:74px; height:44px; opacity:.75; color:var(--gold); }
+.divider__motif--flip{ transform:scaleX(-1); }
+
+/* Pembatas batik bergigi (tumpal) — segitiga khas kain Jawa */
+.tumpal{
+  height:18px; width:100%; position:relative; z-index:2; opacity:.42;
+  background-repeat:repeat-x; background-size:24px 18px;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='18' viewBox='0 0 24 18'%3E%3Cpath d='M0 18L12 0L24 18Z' fill='none' stroke='%23b8863b' stroke-width='1.4'/%3E%3Cpath d='M12 13L7 18h10z' fill='%23b8863b' fill-opacity='.5'/%3E%3C/svg%3E");
+}
+.tumpal--down{ transform:rotate(180deg); }
+
+/* ------------------------------------------------------------
+   4. BINGKAI UKIRAN pada kartu penting
+   ------------------------------------------------------------ */
+.ukir-corner{
+  position:absolute; width:34px; height:34px;
+  color:var(--gold); opacity:.5; pointer-events:none;
+}
+.ukir-corner--tl{ top:6px;    left:6px;  }
+.ukir-corner--tr{ top:6px;    right:6px; transform:scaleX(-1); }
+.ukir-corner--bl{ bottom:6px; left:6px;  transform:scaleY(-1); }
+.ukir-corner--br{ bottom:6px; right:6px; transform:scale(-1); }
+
+/* ------------------------------------------------------------
+   5. Penyesuaian layar kecil & hemat gerak
+   ------------------------------------------------------------ */
+@media (max-width:520px){
+  .batik-layer{ opacity:.36; background-size:140px 140px, 100px 100px; }
+  .gunungan-side{ width:52vw; }
+  .gunungan-side--l{ left:-22%; }
+  .gunungan-side--r{ right:-22%; }
+  .awan{ width:96vw; }
+  .gunungan-ghost{ width:88vw; }
+  .divider__motif{ width:58px; height:36px; }
+}
+
+@media (prefers-reduced-motion: reduce){
+  .wayang-bg, .gunungan-side, .awan{ transform:none !important; }
+  .gunungan-side--r, .awan--tr, .awan--bl{ transform:scaleX(-1) !important; }
+}

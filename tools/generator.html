@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Generator Link Undangan</title>
+<style>
+  :root{ --cream:#efe6d3; --light:#f8f2e4; --terra:#8a3f1f; --line:rgba(53,39,27,.18); --ink:#35271b; }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{ background:var(--cream); color:var(--ink); font-family:system-ui,-apple-system,Segoe UI,sans-serif;
+        padding:28px 18px 60px; line-height:1.6; }
+  .wrap{ max-width:860px; margin:0 auto; }
+  h1{ font-size:1.5rem; color:var(--terra); margin-bottom:6px; }
+  p.sub{ opacity:.7; font-size:.92rem; margin-bottom:22px; }
+  label{ display:block; font-size:.75rem; letter-spacing:.1em; text-transform:uppercase; opacity:.65; margin:16px 0 6px; }
+  input,textarea{ width:100%; padding:11px 13px; font:inherit; background:var(--light);
+                  border:1px solid var(--line); border-radius:6px; color:var(--ink); }
+  textarea{ min-height:170px; resize:vertical; font-family:ui-monospace,Menlo,monospace; font-size:.9rem; }
+  button{ margin-top:16px; padding:11px 22px; font:inherit; cursor:pointer; border:none; border-radius:999px;
+          background:var(--terra); color:var(--light); }
+  button.sec{ background:transparent; color:var(--terra); border:1px solid var(--line); }
+  table{ width:100%; border-collapse:collapse; margin-top:22px; font-size:.88rem; }
+  th,td{ text-align:left; padding:9px 8px; border-bottom:1px solid var(--line); vertical-align:top; }
+  th{ font-size:.7rem; letter-spacing:.1em; text-transform:uppercase; opacity:.6; }
+  td.link{ font-family:ui-monospace,Menlo,monospace; font-size:.78rem; word-break:break-all; opacity:.85; }
+  .act{ white-space:nowrap; }
+  .act button{ margin:0 0 0 4px; padding:6px 12px; font-size:.75rem; }
+  .wa{ background:#128c7e; }
+  .note{ background:var(--light); border:1px solid var(--line); border-radius:8px; padding:14px 16px;
+         font-size:.86rem; margin-top:26px; }
+  code{ background:rgba(184,134,59,.16); padding:1px 5px; border-radius:3px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Generator Link Undangan</h1>
+  <p class="sub">Tempel daftar nama tamu (satu nama per baris), lalu salin link personalnya atau kirim langsung via WhatsApp.</p>
+
+  <label for="base">URL undangan</label>
+  <input id="base" type="text" value="https://undangantedaksinten.com/" placeholder="https://domain-anda.com/">
+
+  <label for="names">Daftar nama tamu — satu per baris</label>
+  <textarea id="names" placeholder="Hari Maulana
+Bapak Rudi Hartono
+H. Abdul Aziz
+Keluarga Besar Pak Slamet"></textarea>
+
+  <label for="tpl">Template pesan WhatsApp</label>
+  <textarea id="tpl" style="min-height:120px">Assalamu'alaikum Wr. Wb.
+
+Yth. Bapak/Ibu/Saudara/i {nama}
+
+Tanpa mengurangi rasa hormat, kami mengundang Bapak/Ibu/Saudara/i untuk hadir dalam acara Tedak Sinten putra kami.
+
+Berikut link undangannya:
+{link}
+
+Merupakan suatu kehormatan bagi kami apabila Bapak/Ibu berkenan hadir dan memberikan doa restu.
+
+Matur nuwun.
+Wassalamu'alaikum Wr. Wb.</textarea>
+
+  <button id="go" type="button">Buat Link</button>
+  <button id="csv" type="button" class="sec">Unduh CSV</button>
+
+  <table id="out" hidden>
+    <thead><tr><th>Nama</th><th>Link</th><th></th></tr></thead>
+    <tbody></tbody>
+  </table>
+
+  <div class="note">
+    <strong>Cara pakai:</strong> upload folder undangan ke hosting (Netlify / Vercel / GitHub Pages / cPanel),
+    ganti URL di atas dengan domain Anda, lalu bagikan link per tamu.
+    Format link yang dihasilkan: <code>https://domain.com/?to=Hari%20Maulana</code>.
+    Tanpa parameter <code>?to=</code>, tamu tetap bisa mengisi namanya sendiri di halaman sampul.
+  </div>
+</div>
+
+<script>
+const $ = s => document.querySelector(s);
+let rows = [];
+
+function buatLink(base, nama){
+  let b = base.trim();
+  if(!b) b = location.origin + '/';
+  if(!/[?&]$/.test(b) && !b.endsWith('/') && !b.endsWith('.html')) b += '/';
+  return b + '?to=' + encodeURIComponent(nama);
+}
+
+function render(){
+  const base = $('#base').value;
+  const names = $('#names').value.split('\n').map(s=>s.trim()).filter(Boolean);
+  const tbody = $('#out tbody');
+  tbody.innerHTML = '';
+  rows = names.map(n => ({ nama:n, link:buatLink(base,n) }));
+
+  rows.forEach(r=>{
+    const tr = document.createElement('tr');
+
+    const td1 = document.createElement('td');
+    td1.textContent = r.nama;
+
+    const td2 = document.createElement('td');
+    td2.className = 'link';
+    td2.textContent = r.link;
+
+    const td3 = document.createElement('td');
+    td3.className = 'act';
+    const bCopy = document.createElement('button');
+    bCopy.type='button'; bCopy.className='sec'; bCopy.textContent='Salin';
+    bCopy.onclick = async ()=>{
+      await navigator.clipboard.writeText(r.link);
+      bCopy.textContent='✓'; setTimeout(()=>bCopy.textContent='Salin',1200);
+    };
+    const bWa = document.createElement('button');
+    bWa.type='button'; bWa.className='wa'; bWa.textContent='WhatsApp';
+    bWa.onclick = ()=>{
+      const msg = $('#tpl').value.replaceAll('{nama}', r.nama).replaceAll('{link}', r.link);
+      window.open('https://wa.me/?text=' + encodeURIComponent(msg), '_blank');
+    };
+    td3.append(bCopy, bWa);
+
+    tr.append(td1, td2, td3);
+    tbody.appendChild(tr);
+  });
+
+  $('#out').hidden = rows.length === 0;
+}
+
+$('#go').onclick = render;
+$('#csv').onclick = ()=>{
+  if(!rows.length) render();
+  if(!rows.length) return;
+  const csv = 'Nama,Link\n' + rows.map(r=>`"${r.nama.replace(/"/g,'""')}","${r.link}"`).join('\n');
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8'}));
+  a.download = 'link-undangan.csv';
+  a.click();
+};
+</script>
+</body>
+</html>

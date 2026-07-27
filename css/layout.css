@@ -1,0 +1,120 @@
+/* ============================================================
+   layout.css — struktur halaman: cover, hero, section, footer
+   ============================================================ */
+
+section, header, footer{ position:relative; z-index:2; }
+
+/* ============ SAMPUL / COVER ============ */
+.cover{
+  position:fixed; inset:0; z-index:60;
+  display:grid; place-items:center;
+  padding:calc(env(safe-area-inset-top) + 28px) 24px calc(env(safe-area-inset-bottom) + 28px);
+  background:linear-gradient(170deg, var(--cream-light) 0%, var(--cream) 55%, var(--cream-deep) 100%);
+  overflow:hidden;
+  transition:opacity .8s var(--ease), transform .8s var(--ease), visibility .8s;
+}
+.cover.is-open{
+  opacity:0;
+  transform:scale(1.06);
+  visibility:hidden;
+  pointer-events:none;
+}
+.cover__bg{ position:absolute; inset:0; pointer-events:none; }
+.cover__wayang{
+  position:absolute; fill:var(--wayang-ink); color:var(--wayang-ink);
+}
+.cover__wayang--l{ width:min(46vw,300px); height:auto; left:-14%; top:-6%; transform:rotate(-9deg); }
+.cover__wayang--r{ width:min(38vw,250px); height:auto; right:-12%; bottom:-8%; transform:rotate(10deg) scaleX(-1); }
+
+.cover__inner{
+  position:relative; z-index:2;
+  width:100%; max-width:420px;
+  text-align:center;
+  display:flex; flex-direction:column; align-items:center;
+  gap:var(--sp-2);
+  max-height:100%;
+  overflow-y:auto;
+  overscroll-behavior:contain;
+  padding:4px;
+}
+.cover__ornament{ display:flex; align-items:center; gap:14px; }
+.cover__name{
+  font-size:clamp(2.2rem, 1.3rem + 5vw, 3.4rem);
+  font-style:italic; font-weight:500; line-height:1.05;
+  color:var(--terracotta-deep);
+  text-wrap:balance;
+}
+.cover__date{
+  font-size:var(--fs-sm); letter-spacing:.16em; text-transform:uppercase;
+  opacity:.7;
+}
+.cover__open{ margin-top:var(--sp-1); }
+
+/* ============ HERO ============ */
+.hero{
+  min-height:100svh;
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  text-align:center;
+  padding:clamp(64px,12vh,96px) 24px calc(var(--dock-h) + 72px);
+  background:linear-gradient(180deg, var(--cream-light) 0%, var(--cream) 100%);
+  overflow:hidden;
+}
+.hero__greeting{
+  font-size:.95rem; font-style:italic;
+  opacity:.75; margin-top:var(--sp-2);
+  text-wrap:balance;
+}
+.hero__name{
+  font-size:var(--fs-h1);
+  font-weight:500; font-style:italic; line-height:1;
+  color:var(--terracotta-deep);
+  margin:.4rem 0 .3rem;
+  text-wrap:balance;
+}
+.hero__sub{
+  font-size:clamp(.95rem,.9rem + .2vw,1.1rem);
+  letter-spacing:.06em; opacity:.8;
+}
+.ornament-row{ display:flex; align-items:center; gap:14px; margin:var(--sp-3) 0; }
+
+/* ============ SECTION GENERIC ============ */
+.section{
+  padding:clamp(72px,10vw,104px) 24px;
+  max-width:var(--maxw);
+  margin-inline:auto;
+  text-align:center;
+  position:relative;
+}
+.section:last-of-type{ padding-bottom:calc(var(--dock-h) + 64px); }
+
+/* Latar bergantian supaya ritme visual lebih jelas */
+.sapaan, .detail, .rsvp{
+  background:var(--cream-light);
+  max-width:none;
+  overflow:hidden;
+}
+.sapaan > *, .detail > *, .rsvp > *{
+  max-width:var(--maxw); margin-inline:auto;
+}
+.tentang, .prosesi, .penutup, .galeri, .amplop{ overflow:hidden; }
+
+
+
+/* ============ FOOTER ============ */
+.footer{
+  text-align:center;
+  padding:var(--sp-4) 84px calc(var(--dock-h) + 46px);
+  font-size:var(--fs-xs);
+  line-height:1.7;
+  letter-spacing:.1em; text-transform:uppercase;
+  opacity:.5;
+}
+
+/* ============ RESPONSIF ============ */
+@media (max-width:480px){
+  .section{ padding-inline:20px; }
+  .wayang-bg{ opacity:.6; }
+}
+@media (min-width:900px){
+  .hero__greeting{ font-size:1.05rem; }
+}

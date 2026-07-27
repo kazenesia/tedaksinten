@@ -1,0 +1,8 @@
+Simpan foto di sini. Ekstensi bebas: .webp / .jpg / .jpeg / .png
+(skrip otomatis mendeteksi, jadi tidak masalah bila berbeda dari config.js)
+
+- nathan.webp      -> foto utama, rasio potret 4:5
+- galeri-1.webp, galeri-2.webp, galeri-3.webp  -> galeri (opsional)
+- og-cover.webp    -> thumbnail saat link dibagikan (1200x630)
+
+Nama berkas harus persis seperti di atas (huruf kecil semua).

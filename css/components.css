@@ -1,0 +1,413 @@
+/* ============================================================
+   components.css — komponen yang bisa dipakai ulang
+   ============================================================ */
+
+/* ============ TOMBOL ============ */
+.btn{
+  display:inline-flex; align-items:center; justify-content:center; gap:10px;
+  padding:13px 26px;
+  border:1px solid transparent;
+  border-radius:999px;
+  font-size:.82rem; letter-spacing:.14em; text-transform:uppercase;
+  text-decoration:none; cursor:pointer;
+  transition:transform .2s var(--ease), background-color .2s, color .2s, box-shadow .2s;
+  min-height:46px;
+}
+.btn .ico{ width:18px; height:18px; }
+.btn:hover{ transform:translateY(-2px); }
+.btn:active{ transform:translateY(0); }
+
+.btn--primary{
+  background:var(--terracotta-deep); color:var(--cream-light);
+  box-shadow:var(--shadow-md);
+}
+.btn--primary:hover{ background:var(--terracotta); }
+
+.btn--ghost{
+  background:transparent; color:var(--terracotta-deep);
+  border-color:var(--line);
+}
+.btn--ghost:hover{ background:rgba(184,134,59,.10); border-color:var(--gold); }
+
+.btn--block{ width:100%; }
+
+/* ============ KARTU NAMA TAMU ============ */
+.guest-card{
+  width:100%;
+  margin:var(--sp-2) 0;
+  padding:22px 20px;
+  background:rgba(248,242,228,.72);
+  border:1px solid var(--line);
+  border-radius:var(--radius-lg);
+  backdrop-filter:blur(4px);
+  box-shadow:var(--shadow-sm);
+  position:relative;
+}
+/* garis emas tipis di dalam bingkai */
+.guest-card::after{
+  content:""; position:absolute; inset:6px;
+  border:1px solid rgba(184,134,59,.28);
+  border-radius:calc(var(--radius-lg) - 5px);
+  pointer-events:none;
+}
+.guest-card__label{
+  font-size:var(--fs-xs); letter-spacing:.22em; text-transform:uppercase;
+  color:var(--olive); margin-bottom:8px;
+}
+.guest-card__name{
+  font-family:'Fraunces', Georgia, serif;
+  font-size:clamp(1.25rem,1.05rem + 1vw,1.7rem);
+  font-style:italic; font-weight:500; line-height:1.3;
+  color:var(--brown-ink);
+  word-break:break-word;
+  text-wrap:balance;
+}
+.guest-card__note{
+  font-size:.7rem; opacity:.55; margin-top:10px; font-style:italic;
+}
+.guest-form{ margin-top:10px; }
+.guest-form__label{
+  display:block; font-size:.7rem; letter-spacing:.1em;
+  text-transform:uppercase; opacity:.6; margin-bottom:6px;
+}
+.guest-form__input{
+  width:100%; padding:10px 14px;
+  font-family:inherit; font-size:1rem; color:var(--brown-ink);
+  background:rgba(255,255,255,.6);
+  border:1px solid var(--line); border-radius:var(--radius);
+  text-align:center;
+}
+.guest-form__input:focus{ outline:none; border-color:var(--gold); background:#fff; }
+
+/* ============ BADGE TANGGAL ============ */
+.date-badge{
+  display:inline-flex; flex-direction:column; align-items:center;
+  padding:20px 40px;
+  border:1px solid var(--line); border-radius:var(--radius);
+  background:rgba(248,242,228,.45);
+  backdrop-filter:blur(2px);
+}
+.date-badge__day{ font-size:2.2rem; line-height:1; color:var(--terracotta); }
+.date-badge__month{
+  letter-spacing:.2em; text-transform:uppercase; font-size:.78rem;
+  margin-top:6px; opacity:.75;
+}
+
+/* ============ HITUNG MUNDUR ============ */
+.countdown{
+  display:grid; grid-template-columns:repeat(4,1fr);
+  gap:8px; margin-top:var(--sp-3);
+  width:min(100%,340px);
+}
+.countdown__cell{
+  display:flex; flex-direction:column; align-items:center; gap:2px;
+  padding:10px 4px;
+  border:1px solid var(--line-soft); border-radius:var(--radius);
+  background:rgba(255,255,255,.35);
+}
+.countdown__cell .num{
+  font-family:'Fraunces', Georgia, serif;
+  font-size:1.35rem; line-height:1; color:var(--terracotta-deep);
+  font-variant-numeric:tabular-nums;
+}
+.countdown__cell .unit{
+  font-size:.6rem; letter-spacing:.16em; text-transform:uppercase; opacity:.6;
+}
+.countdown.is-done{ grid-template-columns:1fr; }
+.countdown.is-done .countdown__msg{
+  font-family:'Fraunces', Georgia, serif; font-style:italic;
+  color:var(--terracotta-deep); padding:12px;
+}
+
+/* ============ SCROLL CUE ============ */
+.scroll-cue{
+  position:absolute; left:50%; bottom:calc(var(--dock-h) + 18px);
+  transform:translateX(-50%);
+  display:flex; flex-direction:column; align-items:center; gap:6px;
+  font-size:.66rem; letter-spacing:.24em; text-transform:uppercase;
+  opacity:.55; text-decoration:none; z-index:3;
+}
+.scroll-cue .ico{ width:14px; height:14px; }
+
+/* ============ SAPAAN ============ */
+.sapaan__quote{
+  font-family:'Fraunces', Georgia, serif;
+  font-style:italic; font-size:clamp(1.15rem,1rem + .7vw,1.35rem);
+  line-height:1.8; color:var(--terracotta-deep);
+  margin-bottom:var(--sp-3);
+  position:relative; padding-inline:14px;
+  text-wrap:pretty;
+}
+.sapaan__quote::before,
+.sapaan__quote::after{
+  content:'"'; color:var(--gold); opacity:.5;
+  font-size:1.6em; line-height:0; vertical-align:-.3em;
+}
+.sapaan__parents{ font-size:1.2rem; letter-spacing:.05em; }
+.sapaan__parents .amp{ color:var(--gold); margin-inline:8px; }
+
+/* ============ FOTO ============ */
+.foto-frame{
+  position:relative; max-width:340px; margin-inline:auto;
+  padding:18px 18px 20px;
+  background:var(--cream-light);
+  box-shadow:var(--shadow-lg), 0 2px 0 rgba(255,255,255,.4) inset;
+  transform:rotate(-2.5deg);
+}
+.foto-frame__slot{
+  aspect-ratio:4/5; width:100%;
+  border:1.5px dashed var(--gold);
+  background:repeating-linear-gradient(135deg, rgba(184,134,59,.06) 0 10px, transparent 10px 20px);
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  gap:10px; padding:20px; overflow:hidden;
+}
+.foto-frame__slot img{ width:100%; height:100%; object-fit:cover; }
+.foto-frame__slot .hint{
+  font-size:.76rem; line-height:1.6; opacity:.62; max-width:220px;
+}
+.foto-frame__slot code{
+  font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
+  font-size:.72rem; background:rgba(184,134,59,.14); padding:1px 5px; border-radius:3px;
+}
+.foto-frame__cap{
+  margin-top:14px;
+  font-family:'Fraunces', Georgia, serif; font-style:italic;
+  color:var(--terracotta-deep); font-size:1.05rem;
+}
+.washi-tape{
+  position:absolute; top:-14px; left:50%;
+  transform:translateX(-50%) rotate(-3deg);
+  width:90px; height:28px; opacity:.75;
+  background:repeating-linear-gradient(90deg, var(--terracotta) 0 8px, var(--terracotta-deep) 8px 16px);
+}
+
+/* ============ TIMELINE PROSESI ============ */
+.timeline{
+  text-align:left; margin-top:var(--sp-3);
+  position:relative; padding-left:26px;
+}
+.timeline::before{
+  content:""; position:absolute; left:6px; top:8px; bottom:8px;
+  width:1px; background:linear-gradient(180deg, transparent, var(--gold), transparent);
+  opacity:.55;
+}
+.timeline__item{ position:relative; padding:0 0 var(--sp-3) 6px; }
+.timeline__item:last-child{ padding-bottom:0; }
+.timeline__item::before{
+  content:""; position:absolute; left:-24px; top:9px;
+  width:9px; height:9px; border-radius:50%;
+  background:var(--cream); border:1.5px solid var(--gold);
+}
+.timeline__jam{
+  font-size:.7rem; letter-spacing:.16em; text-transform:uppercase;
+  color:var(--olive); font-weight:500;
+}
+.timeline__judul{
+  font-family:'Fraunces', Georgia, serif; font-style:italic;
+  font-size:1.12rem; color:var(--terracotta-deep); margin:2px 0 4px;
+}
+.timeline__teks{ font-size:.95rem; line-height:1.75; opacity:.82; }
+
+/* ============ DETAIL ACARA ============ */
+.detail-card{
+  background:var(--cream);
+  border:1px solid var(--line); border-radius:var(--radius);
+  padding:clamp(30px,5vw,42px) clamp(26px,4vw,34px);
+  margin-top:var(--sp-1);
+  text-align:left;
+  position:relative;
+}
+.detail-row{
+  display:flex; gap:18px; align-items:flex-start;
+  padding:18px 0; border-bottom:1px solid var(--line);
+}
+/* baris terakhir tanpa garis — .detail-actions sudah punya border-top */
+.detail-row:has(+ .detail-actions){ border-bottom:none; }
+.detail-row:last-child{ border-bottom:none; }
+.detail-row__icon{ margin-top:3px; color:var(--terracotta-deep); opacity:.85; }
+.detail-row__label{
+  font-size:.7rem; text-transform:uppercase; letter-spacing:.15em;
+  color:var(--olive); margin-bottom:4px;
+}
+.detail-row__value{ font-size:1.02rem; line-height:1.5; }
+.detail-row__addr{ font-size:.9rem; line-height:1.6; opacity:.75; margin-top:3px; }
+.detail-actions{
+  display:flex; flex-wrap:wrap; gap:10px;
+  margin-top:var(--sp-2); padding-top:var(--sp-2);
+  border-top:1px solid var(--line);
+}
+.detail-actions .btn{ flex:1 1 170px; }
+
+/* ============ GALERI ============ */
+.galeri__grid{
+  display:grid; gap:10px; margin-top:var(--sp-3);
+  grid-template-columns:repeat(auto-fill, minmax(120px,1fr));
+}
+.galeri__item{
+  aspect-ratio:1; overflow:hidden; border-radius:var(--radius);
+  background:var(--cream-deep); cursor:zoom-in; border:none; padding:0;
+}
+.galeri__item img{
+  width:100%; height:100%; object-fit:cover;
+  transition:transform .5s var(--ease);
+}
+.galeri__item:hover img{ transform:scale(1.06); }
+
+.lightbox{
+  position:fixed; inset:0; z-index:90;
+  display:grid; place-items:center;
+  background:rgba(37,26,18,.92);
+  padding:24px;
+}
+.lightbox img{ max-width:100%; max-height:86vh; border-radius:var(--radius); }
+.lightbox__close{
+  position:absolute; top:18px; right:18px;
+  width:42px; height:42px; border-radius:50%;
+  background:rgba(248,242,228,.14); color:var(--cream-light);
+  border:none; cursor:pointer; display:grid; place-items:center;
+}
+
+/* ============ FORM ============ */
+.rsvp__intro{ margin-bottom:var(--sp-3); font-size:.98rem !important; }
+.form-card{
+  background:var(--cream);
+  border:1px solid var(--line); border-radius:var(--radius);
+  padding:clamp(22px,4vw,32px);
+  text-align:left;
+  display:flex; flex-direction:column; gap:var(--sp-2);
+}
+.field{ display:flex; flex-direction:column; gap:6px; position:relative; border:none; }
+.field label, .field legend{
+  font-size:.7rem; letter-spacing:.15em; text-transform:uppercase; color:var(--olive);
+}
+.field .opt{ text-transform:none; letter-spacing:0; opacity:.6; }
+.field input[type=text],
+.field select,
+.field textarea{
+  width:100%; padding:12px 14px;
+  font-family:inherit; font-size:1rem; color:var(--brown-ink);
+  background:var(--cream-light);
+  border:1px solid var(--line); border-radius:var(--radius);
+  resize:vertical;
+}
+.field input:focus, .field select:focus, .field textarea:focus{
+  outline:none; border-color:var(--gold); background:#fff;
+}
+.field input[aria-invalid="true"]{ border-color:var(--terracotta); }
+.counter{ align-self:flex-end; font-size:.68rem; opacity:.5; }
+
+.choice-row{ display:flex; flex-wrap:wrap; gap:8px; margin-top:4px; }
+.choice{ flex:1 1 100px; cursor:pointer; }
+.choice input{ position:absolute; opacity:0; pointer-events:none; }
+.choice span{
+  display:block; text-align:center;
+  padding:10px 8px; font-size:.85rem;
+  border:1px solid var(--line); border-radius:999px;
+  background:var(--cream-light);
+  transition:background-color .2s, color .2s, border-color .2s;
+}
+.choice input:checked + span{
+  background:var(--terracotta-deep); color:var(--cream-light);
+  border-color:var(--terracotta-deep);
+}
+.choice input:focus-visible + span{ outline:2px solid var(--terracotta); outline-offset:2px; }
+
+.field--jumlah{ transition:opacity .3s, max-height .3s; }
+.field--jumlah.is-hidden{
+  opacity:0; max-height:0; overflow:hidden; pointer-events:none; margin:0;
+}
+.form-note{ font-size:.82rem; min-height:1.2em; }
+.form-note.is-ok{ color:var(--olive); }
+.form-note.is-err{ color:var(--terracotta); }
+
+/* ============ PENUTUP ============ */
+
+.penutup__thanks{
+  font-style:italic; font-size:clamp(1.5rem,1.2rem + 1.2vw,2rem);
+  color:var(--terracotta-deep); margin-bottom:var(--sp-2);
+}
+.penutup__salam{ margin-top:var(--sp-3); font-style:italic; opacity:.75 !important; }
+.penutup__keluarga{ margin-top:var(--sp-1); font-size:1.15rem !important; letter-spacing:.05em; }
+
+/* ============ FAB (musik & bagikan) ============ */
+.fab-stack{
+  position:fixed; right:16px; z-index:40;
+  bottom:calc(var(--dock-h) + env(safe-area-inset-bottom) + 16px);
+  display:flex; flex-direction:column; gap:10px;
+  opacity:0; transform:translateY(12px); pointer-events:none;
+  transition:opacity .5s var(--ease), transform .5s var(--ease);
+}
+.fab-stack.is-ready{ opacity:1; transform:none; pointer-events:auto; }
+.fab{
+  width:48px; height:48px; border-radius:50%;
+  border:none; cursor:pointer;
+  display:grid; place-items:center;
+  box-shadow:var(--shadow-md);
+  transition:transform .2s var(--ease), background-color .2s;
+}
+.fab:hover{ transform:scale(1.07); }
+.fab--music{ background:var(--terracotta-deep); color:var(--cream-light); }
+.fab--share{ background:var(--cream-light); color:var(--terracotta-deep); border:1px solid var(--line); }
+
+.bars{ display:flex; gap:2px; align-items:flex-end; height:16px; }
+.bars span{
+  width:3px; border-radius:1px; background:var(--cream-light);
+  animation:eq .9s ease-in-out infinite;
+}
+.bars span:nth-child(2){ animation-delay:.2s; }
+.bars span:nth-child(3){ animation-delay:.4s; }
+/* Saat dijeda: bar diam dengan tinggi berbeda agar terbaca sebagai ikon musik,
+   bukan tiga titik "..." */
+.fab--music.is-paused .bars span{ animation-play-state:paused; }
+.fab--music.is-paused .bars span:nth-child(1){ height:7px; }
+.fab--music.is-paused .bars span:nth-child(2){ height:14px; }
+.fab--music.is-paused .bars span:nth-child(3){ height:10px; }
+.fab--music.is-paused{ background:var(--terracotta-deep); opacity:.75; }
+
+/* ============ DOCK NAVIGASI ============ */
+.dock{
+  position:fixed; left:50%; bottom:0; z-index:45;
+  transform:translate(-50%,110%);
+  width:min(100%,var(--maxw));
+  display:flex; justify-content:space-around; align-items:center;
+  height:var(--dock-h);
+  padding-bottom:env(safe-area-inset-bottom);
+  background:rgba(248,242,228,.92);
+  backdrop-filter:blur(10px);
+  border-top:1px solid var(--line);
+  transition:transform .5s var(--ease);
+}
+.dock.is-ready{ transform:translate(-50%,0); }
+.dock__item{
+  flex:1; text-align:center; text-decoration:none;
+  font-size:.66rem; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--brown-dark); opacity:.5;
+  padding:14px 2px; min-height:44px;
+  display:flex; align-items:center; justify-content:center;
+  position:relative;
+  transition:opacity .25s, color .25s;
+}
+.dock__item.is-active{ opacity:1; color:var(--terracotta-deep); }
+.dock__item.is-active::after{
+  content:""; position:absolute; left:50%; bottom:4px;
+  transform:translateX(-50%);
+  width:16px; height:2px; border-radius:2px; background:var(--gold);
+}
+@media (min-width:900px){
+  .dock{ border-radius:999px 999px 0 0; }
+}
+
+/* ============ TOAST ============ */
+.toast{
+  position:fixed; left:50%; z-index:100;
+  bottom:calc(var(--dock-h) + 26px);
+  transform:translate(-50%,20px);
+  max-width:80vw;
+  padding:11px 20px; border-radius:999px;
+  background:var(--brown-ink); color:var(--cream-light);
+  font-size:.82rem; letter-spacing:.03em;
+  box-shadow:var(--shadow-md);
+  opacity:0; pointer-events:none;
+  transition:opacity .3s, transform .3s var(--ease);
+}
+.toast.is-show{ opacity:1; transform:translate(-50%,0); }
