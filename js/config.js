@@ -41,7 +41,7 @@ window.UND.config = {
     alamat: 'Desa Jiken RT 04 RW 01, Kec. Tulangan, Kab. Sidoarjo, Jawa Timur',
     mapsQuery: 'Desa Jiken RT 04 RW 01 Kec. Tulangan Kab. Sidoarjo',
     // Kalau punya link Google Maps pendek, tempel di sini (kosongkan untuk pakai mapsQuery)
-    mapsUrl: 'https://share.google/AD3XLwoM5EpsAMm7M'
+    mapsUrl: 'https://maps.app.goo.gl/ztimMchWpSa33eH78?g_st=atm'
   },
 
   /* ---------- Fitur opsional (true / false) ---------- */
