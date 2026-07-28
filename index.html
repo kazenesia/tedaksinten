@@ -17,11 +17,11 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500;1,9..144,600&family=Spectral:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet">
 
-<link rel="stylesheet" href="css/base.css?v=1">
-<link rel="stylesheet" href="css/layout.css?v=1">
-<link rel="stylesheet" href="css/components.css?v=1">
-<link rel="stylesheet" href="css/ornaments.css?v=1">
-<link rel="stylesheet" href="css/animations.css?v=1">
+<link rel="stylesheet" href="css/base.css?v=3">
+<link rel="stylesheet" href="css/layout.css?v=3">
+<link rel="stylesheet" href="css/components.css?v=3">
+<link rel="stylesheet" href="css/ornaments.css?v=3">
+<link rel="stylesheet" href="css/animations.css?v=3">
 </head>
 <body class="is-locked">
 
@@ -165,7 +165,7 @@
     <div class="awan awan--bl awan--soft" data-parallax="0.04" aria-hidden="true"></div>
     <div class="gunungan-side gunungan-side--l" data-parallax="0.05" aria-hidden="true"></div>
     <div class="gunungan-side gunungan-side--r" data-parallax="-0.04" aria-hidden="true"></div>
-    <div class="gunungan-ghost"data-parallax="0.02" aria-hidden="true"></div>
+    <div class="gunungan-ghost" data-parallax="0.02" aria-hidden="true"></div>
 
     <p class="eyebrow" data-reveal>Undangan Tedak Sinten</p>
     <p class="hero__greeting" id="heroGreeting" data-reveal>Kepada Bapak/Ibu/Saudara/i yang berbahagia</p>
@@ -208,7 +208,7 @@
   <!-- ---------- SAPAAN ---------- -->
   <section class="section sapaan" id="sapaan">
     <div class="awan awan--tl awan--soft" data-parallax="0.03" aria-hidden="true"></div>
-    <div class="gunungan-ghost"data-parallax="0.03" aria-hidden="true"></div>
+    <div class="gunungan-ghost" data-parallax="0.03" aria-hidden="true"></div>
     <p class="section-label" data-reveal>Assalamu'alaikum Wr. Wb.</p>
     <blockquote class="sapaan__quote" data-reveal>
       Dengan penuh rasa syukur kepada Allah SWT, izinkan kami mengundang
@@ -252,15 +252,6 @@
       agar kelak ia tumbuh menjadi pribadi yang mandiri, kuat menapaki kehidupan,
       serta senantiasa dalam lindungan dan berkah-Nya.
     </p>
-  </section>
-
-  <!-- ---------- SUSUNAN PROSESI ---------- -->
-  <section class="section prosesi" id="prosesi">
-    <div class="awan awan--br awan--soft" data-parallax="-0.03" aria-hidden="true"></div>
-    <div class="gunungan-ghost"data-parallax="0.025" aria-hidden="true"></div>
-    <p class="section-label" data-reveal>Rangkaian Acara</p>
-    <h2 data-reveal>Susunan Prosesi</h2>
-    <ol class="timeline" id="timeline"><!-- diisi oleh JS --></ol>
   </section>
 
   <div class="divider" aria-hidden="true">
@@ -323,52 +314,6 @@
     <div class="galeri__grid" id="galeriGrid"><!-- diisi oleh JS --></div>
   </section>
 
-  <!-- ---------- RSVP ---------- -->
-  <section class="section rsvp" id="rsvp">
-    <div class="gunungan-side gunungan-side--l" data-parallax="0.03" aria-hidden="true"></div>
-    <div class="gunungan-side gunungan-side--r" data-parallax="-0.03" aria-hidden="true"></div>
-    <p class="section-label" data-reveal>Konfirmasi Kehadiran</p>
-    <h2 data-reveal>Sugeng Rawuh</h2>
-    <p class="rsvp__intro" data-reveal>Mohon berkenan mengisi konfirmasi berikut agar kami dapat menyiapkan tempat dengan baik.</p>
-
-    <form class="form-card" id="rsvpForm" data-reveal="scale" novalidate>
-      <div class="field">
-        <label for="rsvpNama">Nama</label>
-        <input type="text" id="rsvpNama" name="nama" required maxlength="60" placeholder="Nama Anda">
-      </div>
-
-      <fieldset class="field">
-        <legend>Kehadiran</legend>
-        <div class="choice-row">
-          <label class="choice"><input type="radio" name="hadir" value="Hadir" checked><span>Hadir</span></label>
-          <label class="choice"><input type="radio" name="hadir" value="Masih ragu"><span>Masih ragu</span></label>
-          <label class="choice"><input type="radio" name="hadir" value="Berhalangan"><span>Berhalangan</span></label>
-        </div>
-      </fieldset>
-
-      <div class="field field--jumlah" id="fieldJumlah">
-        <label for="rsvpJumlah">Jumlah yang hadir</label>
-        <select id="rsvpJumlah" name="jumlah">
-          <option value="1">1 orang</option>
-          <option value="2">2 orang</option>
-          <option value="3">3 orang</option>
-          <option value="4">4 orang</option>
-          <option value="5">5 orang atau lebih</option>
-        </select>
-      </div>
-
-      <div class="field">
-        <label for="rsvpPesan">Ucapan &amp; doa <span class="opt">(opsional)</span></label>
-        <textarea id="rsvpPesan" name="pesan" rows="3" maxlength="400" placeholder="Tulis doa terbaik untuk Nathan…"></textarea>
-        <span class="counter"><span id="pesanCount">0</span>/400</span>
-      </div>
-
-      <button class="btn btn--primary btn--block" type="submit">Kirim Konfirmasi</button>
-      <p class="form-note" id="rsvpNote" role="status"></p>
-    </form>
-
-  </section>
-
   <div class="divider" aria-hidden="true">
     <span class="divider__line"></span>
     <svg class="divider__motif divider__motif--flip" viewBox="0 0 200 120"><use href="#sulur"/></svg>
@@ -410,9 +355,7 @@
 <nav class="dock" id="dock" aria-label="Navigasi undangan" aria-hidden="true">
   <a href="#hero"    data-dock class="dock__item is-active"><span>Awal</span></a>
   <a href="#tentang" data-dock class="dock__item"><span>Makna</span></a>
-  <a href="#prosesi" data-dock class="dock__item"><span>Acara</span></a>
   <a href="#detail"  data-dock class="dock__item"><span>Tempat</span></a>
-  <a href="#rsvp"    data-dock class="dock__item"><span>RSVP</span></a>
 </nav>
 
 <!-- ---------- LIGHTBOX GALERI ---------- -->
@@ -428,18 +371,17 @@
 
 <audio id="bgMusic" loop preload="none"></audio>
 
-<!-- ?v=1 = penanda versi (cache busting).
-     SETIAP KALI mengedit file css/ atau js/, naikkan angkanya jadi ?v=2, ?v=3, dst.
+<!-- ?v=3 = penanda versi (cache busting).
+     SETIAP KALI mengedit file css/ atau js/, naikkan angkanya jadi ?v=3, ?v=3, dst.
      Tanpa ini, browser tamu bisa memakai versi lama yang tersimpan di cache. -->
-<script src="js/config.js?v=1"></script>
-<script src="js/utils.js?v=1"></script>
-<script src="js/guest.js?v=1"></script>
-<script src="js/render.js?v=1"></script>
-<script src="js/countdown.js?v=1"></script>
-<script src="js/gallery.js?v=1"></script>
-<script src="js/rsvp.js?v=1"></script>
-<script src="js/music.js?v=1"></script>
-<script src="js/animations.js?v=1"></script>
-<script src="js/main.js?v=1"></script>
-</body>
+<script src="js/config.js?v=3"></script>
+<script src="js/utils.js?v=3"></script>
+<script src="js/guest.js?v=3"></script>
+<script src="js/render.js?v=3"></script>
+<script src="js/countdown.js?v=3"></script>
+<script src="js/gallery.js?v=3"></script>
+<script src="js/music.js?v=3"></script>
+<script src="js/animations.js?v=3"></script>
+<script src="js/main.js?v=3"></script>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a22499539d1df3f2',t:'MTc4NTI0OTIwNg=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
