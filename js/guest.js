@@ -87,10 +87,6 @@ window.UND.guest = (function () {
         : 'Kepada Bapak/Ibu/Saudara/i yang berbahagia';
     }
 
-    // Isi otomatis kolom nama pada form RSVP
-    const elRsvp = $('#rsvpNama');
-    if (elRsvp && current && !elRsvp.value) elRsvp.value = current;
-
     // Perbarui judul tab & meta agar personal saat dibagikan
     if (current) {
       document.title = `Undangan untuk ${current} — Tedak Sinten ${CFG.anak.namaPanggilan}`;
