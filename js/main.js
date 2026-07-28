@@ -42,7 +42,6 @@
     // 3) Fitur
     U.countdown.init();
     U.gallery.init();
-    U.rsvp.init();
     U.music.init();
     // 4) Animasi terakhir supaya semua elemen sudah ada di DOM
     U.animations.init();
