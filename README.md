@@ -21,7 +21,6 @@ undangan/
 │   ├── render.js           ← mengisi konten dari config
 │   ├── countdown.js        ← hitung mundur
 │   ├── gallery.js          ← galeri + lightbox
-│   ├── rsvp.js             ← konfirmasi kehadiran (WhatsApp, tanpa database)
 │   ├── music.js            ← musik latar
 │   ├── animations.js       ← reveal, parallax, dock spy
 │   └── main.js             ← orkestrasi & sampul
@@ -52,7 +51,6 @@ Yang terjadi otomatis saat nama terdeteksi:
 
 - muncul di **kartu "Kepada Yth."** pada halaman sampul,
 - muncul di sapaan hero: *"Kepada Bapak/Ibu/Saudara/i Hari Maulana, yang berbahagia"*,
-- **mengisi otomatis** kolom nama di form RSVP,
 - judul tab berubah jadi *"Undangan untuk Hari Maulana — …"*.
 
 **Penanganan khusus:**
@@ -77,8 +75,6 @@ Semua di **`js/config.js`**:
 - [ ] `anak` — nama, usia, path foto
 - [ ] `orangTua` — nama ayah & ibu
 - [ ] `acara` — hari, `tanggalISO` (dipakai hitung mundur + kalender), lokasi, `mapsUrl`
-- [ ] `susunan` — susunan prosesi (boleh ditambah/kurangi)
-- [ ] `rsvp.waNumber` — **nomor WhatsApp penerima konfirmasi** (format `628…`) ← wajib!
 - [ ] `baseUrl` — domain final (opsional)
 
 Lalu isi file aset:
@@ -101,31 +97,28 @@ lain — jadi foto tetap tampil. Yang **wajib sama** adalah *nama* berkas
 
 Mematikan fitur cukup lewat `config.js` → `fitur`:
 ```js
-fitur: { musik:true, hitungMundur:true, galeri:true, rsvp:true }
+fitur: { musik:true, hitungMundur:true, galeri:true }
 ```
 
 ---
 
-## 3. Cara kerja RSVP (tanpa database)
+## 3. Tanpa RSVP
 
-Undangan ini **tidak memakai database dan tidak menyimpan data tamu di mana pun** —
-tidak di server, tidak juga di browser (`localStorage` tidak dipakai sama sekali).
+Undangan ini **tidak memiliki formulir konfirmasi kehadiran** dan **tidak
+menyimpan data tamu** sama sekali — tanpa database, tanpa `localStorage`.
+Sifatnya murni undangan satu arah.
 
-Alurnya sederhana:
+Nama tamu dari parameter URL (bagian 1) tetap berjalan penuh: tampil di
+kartu sampul, sapaan hero, dan judul tab.
 
-1. Tamu mengisi nama, kehadiran, jumlah orang, dan ucapan.
-2. Menekan **Kirim Konfirmasi** → WhatsApp terbuka dengan pesan yang sudah tersusun rapi.
-3. Tamu menekan **kirim** di WhatsApp → pesan masuk ke nomor keluarga.
+Bila suatu saat ingin menambahkan konfirmasi kehadiran kembali, cara paling
+sederhana adalah mencantumkan tautan WhatsApp biasa di bagian penutup:
 
-> ⚠️ **Penting:** konfirmasi baru sampai kalau tamu benar-benar menekan tombol
-> kirim di WhatsApp. Bila ia menutup aplikasi di langkah itu, tidak ada data
-> yang tersimpan di mana pun. Rekap kehadiran dilakukan manual dari chat WhatsApp.
-
-Yang **wajib** diganti: `config.js` → `rsvp.waNumber` (masih nomor contoh).
-Format `628xxx`, tanpa tanda `+`, spasi, atau strip.
-
-Bagian "buku tamu" sengaja **tidak disertakan**, karena tanpa database ucapan
-hanya akan terlihat oleh tamu yang menulisnya sendiri — menyesatkan.
+```html
+<a href="https://wa.me/628xxxxxxxxxx?text=Saya%20akan%20hadir">
+  Konfirmasi via WhatsApp
+</a>
+```
 
 ## 3b. Nuansa Jawa (ornamen)
 
@@ -135,8 +128,8 @@ jadi tetap tajam di layar HD dan ringan.
 | Ornamen | Letak | Berkas |
 |---|---|---|
 | **Kawung + parang** (lapisan batik) | menyelimuti seluruh halaman | `ornaments.css` → `.batik-layer` |
-| **Gunungan / kayon** (gambar asli) | di balik nama, sapaan, prosesi, penutup | `assets/img/gunungan-mask.webp` |
-| **Gunungan sepasang** mengapit isi | sampul, hero, tentang, RSVP | `.gunungan-side` |
+| **Gunungan / kayon** (gambar asli) | di balik nama, sapaan, penutup | `assets/img/gunungan-mask.webp` |
+| **Gunungan sepasang** mengapit isi | sampul, hero, tentang | `.gunungan-side` |
 | **Awan mega mendung** | latar kedua di hampir semua bagian | `assets/img/awan-mask.webp` |
 | **Sulur / lung-lungan** | pembatas antar bagian | `#sulur` |
 | **Sudut ukiran** | bingkai kartu Detail Acara | `#ukir-sudut` |
