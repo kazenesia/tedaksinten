@@ -88,15 +88,15 @@ section, header, footer{ position:relative; z-index:2; }
 .section:last-of-type{ padding-bottom:calc(var(--dock-h) + 64px); }
 
 /* Latar bergantian supaya ritme visual lebih jelas */
-.sapaan, .detail, .rsvp{
+.sapaan, .detail{
   background:var(--cream-light);
   max-width:none;
   overflow:hidden;
 }
-.sapaan > *, .detail > *, .rsvp > *{
+.sapaan > *, .detail > *{
   max-width:var(--maxw); margin-inline:auto;
 }
-.tentang, .prosesi, .penutup, .galeri, .amplop{ overflow:hidden; }
+.tentang, .penutup, .galeri{ overflow:hidden; }
 
 
 
