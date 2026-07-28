@@ -181,33 +181,6 @@
   background:repeating-linear-gradient(90deg, var(--terracotta) 0 8px, var(--terracotta-deep) 8px 16px);
 }
 
-/* ============ TIMELINE PROSESI ============ */
-.timeline{
-  text-align:left; margin-top:var(--sp-3);
-  position:relative; padding-left:26px;
-}
-.timeline::before{
-  content:""; position:absolute; left:6px; top:8px; bottom:8px;
-  width:1px; background:linear-gradient(180deg, transparent, var(--gold), transparent);
-  opacity:.55;
-}
-.timeline__item{ position:relative; padding:0 0 var(--sp-3) 6px; }
-.timeline__item:last-child{ padding-bottom:0; }
-.timeline__item::before{
-  content:""; position:absolute; left:-24px; top:9px;
-  width:9px; height:9px; border-radius:50%;
-  background:var(--cream); border:1.5px solid var(--gold);
-}
-.timeline__jam{
-  font-size:.7rem; letter-spacing:.16em; text-transform:uppercase;
-  color:var(--olive); font-weight:500;
-}
-.timeline__judul{
-  font-family:'Fraunces', Georgia, serif; font-style:italic;
-  font-size:1.12rem; color:var(--terracotta-deep); margin:2px 0 4px;
-}
-.timeline__teks{ font-size:.95rem; line-height:1.75; opacity:.82; }
-
 /* ============ DETAIL ACARA ============ */
 .detail-card{
   background:var(--cream);
@@ -266,59 +239,6 @@
   background:rgba(248,242,228,.14); color:var(--cream-light);
   border:none; cursor:pointer; display:grid; place-items:center;
 }
-
-/* ============ FORM ============ */
-.rsvp__intro{ margin-bottom:var(--sp-3); font-size:.98rem !important; }
-.form-card{
-  background:var(--cream);
-  border:1px solid var(--line); border-radius:var(--radius);
-  padding:clamp(22px,4vw,32px);
-  text-align:left;
-  display:flex; flex-direction:column; gap:var(--sp-2);
-}
-.field{ display:flex; flex-direction:column; gap:6px; position:relative; border:none; }
-.field label, .field legend{
-  font-size:.7rem; letter-spacing:.15em; text-transform:uppercase; color:var(--olive);
-}
-.field .opt{ text-transform:none; letter-spacing:0; opacity:.6; }
-.field input[type=text],
-.field select,
-.field textarea{
-  width:100%; padding:12px 14px;
-  font-family:inherit; font-size:1rem; color:var(--brown-ink);
-  background:var(--cream-light);
-  border:1px solid var(--line); border-radius:var(--radius);
-  resize:vertical;
-}
-.field input:focus, .field select:focus, .field textarea:focus{
-  outline:none; border-color:var(--gold); background:#fff;
-}
-.field input[aria-invalid="true"]{ border-color:var(--terracotta); }
-.counter{ align-self:flex-end; font-size:.68rem; opacity:.5; }
-
-.choice-row{ display:flex; flex-wrap:wrap; gap:8px; margin-top:4px; }
-.choice{ flex:1 1 100px; cursor:pointer; }
-.choice input{ position:absolute; opacity:0; pointer-events:none; }
-.choice span{
-  display:block; text-align:center;
-  padding:10px 8px; font-size:.85rem;
-  border:1px solid var(--line); border-radius:999px;
-  background:var(--cream-light);
-  transition:background-color .2s, color .2s, border-color .2s;
-}
-.choice input:checked + span{
-  background:var(--terracotta-deep); color:var(--cream-light);
-  border-color:var(--terracotta-deep);
-}
-.choice input:focus-visible + span{ outline:2px solid var(--terracotta); outline-offset:2px; }
-
-.field--jumlah{ transition:opacity .3s, max-height .3s; }
-.field--jumlah.is-hidden{
-  opacity:0; max-height:0; overflow:hidden; pointer-events:none; margin:0;
-}
-.form-note{ font-size:.82rem; min-height:1.2em; }
-.form-note.is-ok{ color:var(--olive); }
-.form-note.is-err{ color:var(--terracotta); }
 
 /* ============ PENUTUP ============ */
 
