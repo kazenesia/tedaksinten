@@ -120,21 +120,6 @@ window.UND.render = (function () {
     if (cap) cap.textContent = `${a.namaPanggilan}, ${a.usia}`;
   }
 
-  function timeline() {
-    const wrap = $('#timeline');
-    if (!wrap) return;
-    if (!CFG.susunan || !CFG.susunan.length) {
-      const sec = $('#prosesi'); if (sec) sec.hidden = true;
-      return;
-    }
-    wrap.innerHTML = CFG.susunan.map((s, i) => `
-      <li class="timeline__item" data-reveal>
-        <p class="timeline__jam">${escapeHtml(s.jam)} WIB</p>
-        <h3 class="timeline__judul">${escapeHtml(s.judul)}</h3>
-        <p class="timeline__teks">${escapeHtml(s.teks)}</p>
-      </li>`).join('');
-  }
-
   function maps() {
     const a = CFG.acara;
     const url = a.mapsUrl ||
@@ -194,7 +179,6 @@ window.UND.render = (function () {
 
   function init() {
     teksIdentitas();
-    timeline();
     maps();
     kalender();
     share();
